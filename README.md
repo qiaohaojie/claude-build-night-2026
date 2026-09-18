@@ -1,3 +1,11 @@
+## Claude Build Night Sydney 2026
+
+Built in one evening at **Claude Build Night Sydney 2026** (Anthropic / Claude community hack night in Sydney): ship something real with Claude under time pressure, then demo it.
+
+This repo is my build from that night — **The room's mood**, a live event wall where the room types how it feels.
+
+**Demo walkthrough:** [Claude Build Night Sydney 2026 on YouTube](https://youtu.be/JGneXHin1CM)
+
 # The room's mood
 
 A hackathon project: people scan a QR code, type one word for how they feel,
