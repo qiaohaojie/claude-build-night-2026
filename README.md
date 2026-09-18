@@ -10,20 +10,6 @@ Two screens:
   a running count of words and people, and a gauge of the room's vibe.
 - **`/join`** — the phone screen. Your name, then one word.
 
-> [!IMPORTANT]
-> **This repo uses HeroUI Pro, a paid library. `pnpm install` will fail for you without a HeroUI Pro license.**
->
-> This was built for a hackathon under time pressure, so I used my usual code
-> template, which includes HeroUI Pro. Almost all the UI uses the free, open-source
-> `@heroui/react` components. The only Pro component is `NumberValue` (the big
-> animated numbers in `web/app/page.tsx`), plus the Pro CSS import in
-> `web/app/globals.css`. If you don't have a Pro license, installing
-> `@heroui-pro/react` will fail. The fix is small: ask your AI coding assistant to
-> "replace the HeroUI Pro `NumberValue` with a plain element or an open-source
-> HeroUI component, and remove `@heroui-pro/react` from `web/package.json`,
-> `web/pnpm-workspace.yaml` and `web/app/globals.css`." After that, everything
-> runs on open-source packages. No HeroUI Pro source code is included in this repo.
-
 ## Run it
 
 ```bash
@@ -74,7 +60,10 @@ Documents look like this:
 ## Stack
 
 Next.js 16 (App Router) · MongoDB Atlas · Anthropic Claude Haiku ·
-HeroUI v3 + Tailwind v4 · TypeScript · pnpm
+HeroUI v3 (`@heroui/react`, MIT) + Tailwind v4 · TypeScript · pnpm
+
+Every dependency is open source, so `pnpm install` works with no licence or
+private registry.
 
 `DESIGN.md` is the visual contract for the two screens. `AGENTS.md` is a short
 brief for AI coding assistants working in this repo.

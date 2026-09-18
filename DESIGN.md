@@ -33,8 +33,8 @@ Read this before changing any product UI (`.tsx`, `.jsx`, `.css`).
 ## 4. Component selection
 
 - Forms: `Form` + `TextField` (`variant="secondary"` on glass) + `Button`.
-- Counters: HeroUI Pro `NumberValue` (the repo's only Pro component — see
-  `AGENTS.md` for the open-source swap). Status: `Chip` soft.
+- Counters: local `NumberValue` (`web/app/number-value.tsx`) — rolls to the
+  new value, holds still under reduced motion. Status: `Chip` soft.
 
 ## 5. Copy voice
 

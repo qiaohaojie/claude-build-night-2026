@@ -14,6 +14,7 @@ web/                     the whole app (Next.js App Router)
   app/api/moods/stream/route.ts Atlas change stream -> Server-Sent Events
   lib/mongo.ts           one pooled MongoClient, the `moods` collection
   lib/sentiment.ts       Claude Haiku word classifier (never throws)
+  app/number-value.tsx   the rolling counter used by the stage
   app/globals.css        the "dusk glass" theme layer
 DESIGN.md                the visual contract for the two screens
 ```
@@ -33,14 +34,12 @@ DESIGN.md                the visual contract for the two screens
   local `mongod` will not serve `/api/moods/stream`.
 - Read `DESIGN.md` before changing anything visual.
 
-## This repo uses HeroUI Pro (paid)
+## UI packages
 
-`@heroui-pro/react` is a paid package, so `pnpm install` fails without a
-licence. Only `NumberValue` in `web/app/page.tsx` and the Pro CSS import in
-`web/app/globals.css` depend on it. To run fully on open-source packages,
-replace `NumberValue` with a plain element or an OSS HeroUI component and drop
-`@heroui-pro/react` from `web/package.json`, `web/pnpm-workspace.yaml`, and
-`web/app/globals.css`. Everything else is `@heroui/react` (MIT) on Tailwind v4.
+Everything is `@heroui/react` v3 (MIT) on Tailwind v4, so `pnpm install` works
+for anyone with no licence or private registry. Keep it that way: no paid or
+private packages. The animated counters are `NumberValue` in
+`web/app/number-value.tsx`, a small local component, not a library import.
 
 ## Checks
 

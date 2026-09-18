@@ -1,7 +1,7 @@
 "use client";
 
 import { Button, Chip } from "@heroui/react";
-import { NumberValue } from "@heroui-pro/react";
+import { NumberValue } from "./number-value";
 import { QRCodeSVG } from "qrcode.react";
 import { useEffect, useRef, useState } from "react";
 
