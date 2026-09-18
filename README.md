@@ -6,6 +6,8 @@ This repo is my build from that night — **The room's mood**, a live event wall
 
 **Demo walkthrough:** [Claude Build Night Sydney 2026 on YouTube](https://youtu.be/JGneXHin1CM)
 
+[![Claude Build Night Sydney 2026](https://img.youtube.com/vi/JGneXHin1CM/maxresdefault.jpg)](https://youtu.be/JGneXHin1CM)
+
 # The room's mood
 
 A hackathon project: people scan a QR code, type one word for how they feel,
