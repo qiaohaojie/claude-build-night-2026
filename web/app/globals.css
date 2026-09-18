@@ -1,0 +1,151 @@
+@import "tailwindcss";
+@import "@heroui/styles";
+@import "@heroui-pro/react/css";
+
+/* Dusk glass — product layer (DESIGN.md §2). Unlayered so it wins. */
+:root {
+  --room-ink: oklch(0.15 0.03 252);
+  --room-sky: oklch(0.8 0.09 235);
+  --room-dusk: oklch(0.82 0.1 62);
+  /* Sentiment tints (positive / negative). Soft, so they sit inside the glass. */
+  --room-teal: oklch(0.87 0.09 172);
+  --room-coral: oklch(0.8 0.12 38);
+  --room-violet: var(--room-sky); /* retired name, kept so old references resolve */
+  --room-font: -apple-system, "SF Pro Display", var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  color-scheme: dark;
+  /* Prominent controls are clear white glass, not a brand colour. */
+  --accent: oklch(0.97 0.008 250);
+  --accent-foreground: oklch(0.2 0.03 252);
+}
+
+@theme inline {
+  --font-sans: var(--room-font);
+  --font-mono: var(--font-geist-mono);
+}
+
+@layer base {
+  body {
+    font-family: var(--room-font);
+    background: var(--room-ink);
+  }
+}
+
+/* The sky: night above, a warm horizon below, two slow lights for the glass to bend. */
+.aurora {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(90% 55% at 50% 118%, oklch(0.74 0.13 58 / 0.75) 0%, oklch(0.55 0.13 25 / 0.35) 38%, transparent 70%),
+    radial-gradient(70% 60% at 12% -10%, oklch(0.42 0.09 240 / 0.9) 0%, transparent 65%),
+    linear-gradient(180deg, oklch(0.14 0.03 255) 0%, oklch(0.24 0.06 248) 55%, oklch(0.3 0.06 300 / 0.9) 100%);
+}
+.aurora::after {
+  /* Fine grain so the gradients never band on a projector. */
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.07;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.aurora i {
+  position: absolute;
+  width: 46vmax;
+  height: 46vmax;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.5;
+  animation: drift 30s ease-in-out infinite alternate;
+}
+.aurora i:nth-child(1) { background: var(--room-sky); top: -20vmax; right: -8vmax; opacity: 0.32; }
+.aurora i:nth-child(2) { background: var(--room-dusk); bottom: -26vmax; left: 8vmax; animation-duration: 36s; animation-delay: -8s; }
+.aurora i:nth-child(3) { background: oklch(0.7 0.12 15); bottom: -18vmax; right: 4vmax; width: 30vmax; height: 30vmax; opacity: 0.28; animation-duration: 42s; animation-delay: -15s; }
+
+@keyframes drift {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to { transform: translate3d(6vmax, -4vmax, 0) scale(1.15); }
+}
+
+/* Liquid glass: clear fill, bright top edge, soft inner glow, deep drop shadow. */
+.glass,
+.glass-pill {
+  position: relative;
+  background: linear-gradient(145deg, color-mix(in oklab, white 16%, transparent) 0%, color-mix(in oklab, white 5%, transparent) 45%, color-mix(in oklab, white 9%, transparent) 100%);
+  border: 1px solid color-mix(in oklab, white 20%, transparent);
+  box-shadow:
+    inset 0 1px 0 0 color-mix(in oklab, white 45%, transparent),
+    inset 0 -1px 0 0 color-mix(in oklab, white 8%, transparent),
+    inset 0 0 32px 0 color-mix(in oklab, white 5%, transparent),
+    0 40px 80px -30px oklch(0.08 0.03 255 / 0.7);
+  backdrop-filter: blur(36px) saturate(1.9) brightness(1.08);
+  -webkit-backdrop-filter: blur(36px) saturate(1.9) brightness(1.08);
+}
+.glass-pill {
+  border-radius: 999px;
+  box-shadow:
+    inset 0 1px 0 0 color-mix(in oklab, white 40%, transparent),
+    inset 0 0 14px 0 color-mix(in oklab, white 6%, transparent),
+    0 10px 30px -12px oklch(0.08 0.03 255 / 0.6);
+  backdrop-filter: blur(18px) saturate(1.8);
+  -webkit-backdrop-filter: blur(18px) saturate(1.8);
+}
+
+/* The QR sits in a glass bezel: white tile, concentric corners. */
+.qr-halo {
+  border: 10px solid color-mix(in oklab, white 14%, transparent);
+  background-clip: padding-box;
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, white 28%, transparent),
+    0 30px 70px -20px oklch(0.08 0.03 255 / 0.75),
+    0 0 120px 0 color-mix(in oklab, var(--room-dusk) 22%, transparent);
+}
+
+.display {
+  letter-spacing: -0.035em;
+  line-height: 1;
+  color: white;
+  text-wrap: balance;
+}
+
+/* A word landing in the room. */
+.word-in { animation: word-in 900ms cubic-bezier(0.2, 0.9, 0.2, 1.1) both; }
+@keyframes word-in {
+  from { opacity: 0; transform: translateY(28px) scale(0.7); filter: blur(8px); }
+  to { opacity: 1; transform: none; filter: none; }
+}
+
+/* A word leaving the phone. */
+.word-out { animation: word-out 1100ms cubic-bezier(0.3, 0, 0.2, 1) both; }
+@keyframes word-out {
+  0% { opacity: 1; transform: none; }
+  100% { opacity: 0; transform: translateY(-46vh) scale(1.5); filter: blur(6px); }
+}
+
+/* Vibe gauge: the needle overshoots a little, like a real dial. */
+.gauge-needle { transition: transform 1200ms cubic-bezier(0.3, 1.5, 0.5, 1); filter: drop-shadow(0 0 6px rgb(255 255 255 / 0.6)); }
+.gauge-arc { transition: stroke-dasharray 1200ms cubic-bezier(0.3, 1, 0.4, 1); }
+.gauge-bar { display: block; height: 100%; transition: width 900ms ease; }
+
+.pulse-dot { animation: pulse-dot 1.8s ease-in-out infinite; }
+@keyframes pulse-dot { 50% { opacity: 0.35; transform: scale(0.8); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora i, .word-in, .word-out, .pulse-dot { animation: none; }
+  .gauge-needle, .gauge-arc, .gauge-bar { transition: none; }
+}
+
+/* Fields on glass are clear too, not an opaque slab. */
+.glass input {
+  background: color-mix(in oklab, white 9%, transparent);
+  border: 1px solid color-mix(in oklab, white 18%, transparent);
+  box-shadow: inset 0 1px 2px 0 oklch(0.08 0.03 255 / 0.35);
+}
+.glass input:focus-visible,
+.glass input[data-focused] {
+  border-color: color-mix(in oklab, white 85%, transparent);
+  outline: 2px solid color-mix(in oklab, white 35%, transparent);
+  outline-offset: 2px;
+}
