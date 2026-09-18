@@ -4,9 +4,13 @@ Built in one evening at **Claude Build Night Sydney 2026** (Anthropic / Claude c
 
 This repo is my build from that night — **The room's mood**, a live event wall where the room types how it feels.
 
-**Demo walkthrough:** [Claude Build Night Sydney 2026 on YouTube](https://youtu.be/JGneXHin1CM)
+**Links**
 
-[![Claude Build Night Sydney 2026](https://img.youtube.com/vi/JGneXHin1CM/maxresdefault.jpg)](https://youtu.be/JGneXHin1CM)
+- **YouTube walkthrough:** https://l.pimspace.com/claude-bn-2026
+- **Playable demo:** https://l.pimspace.com/room-mood-demo
+- **Presentation slides:** https://l.pimspace.com/room-mood-slides
+
+[![Claude Build Night Sydney 2026](https://img.youtube.com/vi/JGneXHin1CM/maxresdefault.jpg)](https://l.pimspace.com/claude-bn-2026)
 
 # The room's mood
 
